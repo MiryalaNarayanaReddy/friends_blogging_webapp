@@ -1,0 +1,51 @@
+@startuml
+entity User {
+    + UUID id <<PK, UNIQUE>>
+    + String username <<UNIQUE>>
+    + String email <<UNIQUE>>
+    + String password
+    + Date created_at
+    + Date updated_at
+}
+
+entity Blog {
+    + UUID id <<PK, UNIQUE>>
+    + String title
+    + Text content
+    + String visibility
+    + Date created_at
+    + Date updated_at
+    -- Foreign Keys --
+    + UUID author_id <<FK>>
+}
+
+entity Friend {
+    + UUID id <<PK, UNIQUE>>
+    + UUID user_id <<FK>>
+    + UUID friend_id <<FK>>
+    + Date created_at
+}
+
+entity Reaction {
+    + UUID id <<PK, UNIQUE>>
+    + UUID user_id <<FK>>
+    + UUID blog_id <<FK>>
+    + String reaction_type
+    + Date created_at
+}
+
+entity BlogImage {
+    + UUID id <<PK, UNIQUE>>
+    + UUID blog_id <<FK>>
+    + String image_url
+    + Date created_at
+}
+
+User ||--o{ Blog : author_id
+User ||--o{ Friend : user_id
+User ||--o{ Friend : friend_id
+User ||--o{ Reaction : user_id
+Blog ||--o{ Reaction : blog_id
+Blog ||--o{ BlogImage : blog_id
+
+@enduml
