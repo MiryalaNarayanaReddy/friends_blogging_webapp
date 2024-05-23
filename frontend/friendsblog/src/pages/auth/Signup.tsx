@@ -7,6 +7,7 @@ import HandleSignup from '../../controllers/Signup'
 
 function Signup(): React.ReactNode {
 
+    const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('')
@@ -31,11 +32,12 @@ function Signup(): React.ReactNode {
             {/* form */}
 
             <form className="mt-4">
+                <InputCard label="Username" name="username" type="text" value={username} setValue={setUsername} />
                 <InputCard label="Email" name="email" type="email" value={email} setValue={setEmail} />
                 <InputCard label="First Name" name="firstName" type="text" value={firstName} setValue={setFirstName} />
                 <InputCard label="Last Name" name="lastName" type="text" value={lastName} setValue={setLastName} />
                 <InputCard label="Password" name="password" type="password" value={password} setValue={setPassword} />
-                <SubmitCard title="Signup" onClick={() => HandleSignup(email, password, firstName, lastName)} />
+                <SubmitCard title="Signup" onClick={() => HandleSignup(username, email, password, firstName, lastName)} />
             </form>
 
         </AuthCard>

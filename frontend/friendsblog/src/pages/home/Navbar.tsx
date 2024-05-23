@@ -3,6 +3,8 @@ import React from "react";
 import NavItem from "../../components/NavItem";
 import Avatar from "../../components/Avatar";
 
+import Logout from "../auth/Logout";
+
 
 function NavBar(): React.ReactNode {
 
@@ -54,7 +56,7 @@ function NavBar(): React.ReactNode {
                     <div className={hidden ? 'hidden' : 'flex flex-col gap-2 absolute top-16 right-5 p-4 rounded bg-transparent border border-gray-300'}>
                         <NavItem title="Profile" link="/profile" />
                         <NavItem title="Account settings" link="/accountsettings" />
-                        <NavItem title="Logout" link="/logout" />
+                        <NavItem title="Logout" link="/logout"  />
 
                     </div>
 
