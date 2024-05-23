@@ -3,9 +3,6 @@ import React from "react";
 import NavItem from "../../components/NavItem";
 import Avatar from "../../components/Avatar";
 
-import Logout from "../auth/Logout";
-
-
 function NavBar(): React.ReactNode {
 
     const [hidden, setHidden] = React.useState(true);
