@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { ParagraphCard, ParagraphWrapperCard, WindowCard, WrapperCard } from "../../components/Wrapper";
 import { ParagraphEditCard } from "../../components/Wrapper";
-import { InputCard } from "../../components/AuthComponents";
 import { TitleCard } from "../../components/Wrapper";
 import { InputTitleCard } from "../../components/Wrapper";
+
 // create large one
 const paragraph = [
     'in the beginning god created the heavens and the earth. the earth was without form and void, and darkness was over the face of the deep. and the spirit of god was hovering over the face of the waters. and god said, “let there be light,” and there was light. and god saw that the light was good. and god separated the light from the darkness. god called the light day, and the darkness he called night. and there was evening and there was morning, the first day.',
@@ -58,19 +58,6 @@ function WriteBlog(): React.ReactNode {
 
 
     // if currsor click below the last paragraph add a new paragraph
-
-    function addParagraph() {
-        const id = (Object.keys(paragraphs).length + 1).toString();
-        let p = { ...paragraphs };
-        p[id] = '';
-        setParagraphs(p);
-        setCurrentParagraph('');
-        setCurrentParagraphIndex(id);
-    }
-
-
-
-
 
 
     return (
