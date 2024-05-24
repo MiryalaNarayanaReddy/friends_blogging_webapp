@@ -22,4 +22,28 @@ model User {
   lastName  String 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  blogs     Blog[]
 }
+
+
+model Blog {
+  id        String        @id @default(uuid())
+  title     String
+  type      String        
+  userId    String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id])
+  content   BlogContent[] @relation("BlogContents")
+}
+
+model BlogContent {
+  id        String   @id @default(uuid())
+  blogId    String
+  index     Int
+  content   String
+  blog      Blog     @relation(fields: [blogId], references: [id], name: "BlogContents")
+
+  @@index([blogId])  // Index for better query performance
+}
+

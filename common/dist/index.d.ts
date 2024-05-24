@@ -41,3 +41,32 @@ export declare const UsernameLoginInput: z.ZodObject<{
     password: string;
 }>;
 export type UsernameLoginType = z.infer<typeof UsernameLoginInput>;
+export declare const BlogInput: z.ZodObject<{
+    title: z.ZodString;
+    type: z.ZodString;
+    content: z.ZodArray<z.ZodObject<{
+        index: z.ZodNumber;
+        content: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        content: string;
+        index: number;
+    }, {
+        content: string;
+        index: number;
+    }>, "many">;
+}, "strip", z.ZodTypeAny, {
+    type: string;
+    title: string;
+    content: {
+        content: string;
+        index: number;
+    }[];
+}, {
+    type: string;
+    title: string;
+    content: {
+        content: string;
+        index: number;
+    }[];
+}>;
+export type BlogInputType = z.infer<typeof BlogInput>;

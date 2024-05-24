@@ -31,3 +31,41 @@ export type UsernameLoginType = z.infer<typeof UsernameLoginInput>;
 
 
 
+// blog checks 
+
+
+// model Blog {
+//     id        String        @id @default(uuid())
+//     title     String
+//     type      String        
+//     createdAt DateTime      @default(now())
+//     updatedAt DateTime      @updatedAt
+//     userId    String
+//     user      User          @relation(fields: [userId], references: [id])
+//     content   BlogContent[] @relation("BlogContents")
+//   }
+  
+//   model BlogContent {
+//     id        String   @id @default(uuid())
+//     blogId    String
+//     index     Int
+//     content   String
+//     blog      Blog     @relation(fields: [blogId], references: [id], name: "BlogContents")
+  
+//     @@index([blogId])  // Index for better query performance
+//   }
+
+
+export const BlogInput = z.object({
+    title: z.string(),
+    type: z.string(),
+    content : z.array(z.object({
+        index: z.number(),
+        content: z.string(),
+    })),
+});
+
+export type BlogInputType = z.infer<typeof BlogInput>;
+
+
+

@@ -16,7 +16,6 @@ const authRoutes = new Hono<{
         DATABASE_URL: string,
         JWT_SECRET: string,
     },
-
 }>();
 
 
