@@ -37,7 +37,7 @@ function NavBar(): React.ReactNode {
 
                     <NavItem title="My Friends" link="/myfriends" />
                     <NavItem title="My blogs" link="/myblogs" />
-                    <NavItem title="Write blog" link="/writeblog" />
+                    <NavItem title="Write blog" link="/blog/write" />
 
                 </div>
 

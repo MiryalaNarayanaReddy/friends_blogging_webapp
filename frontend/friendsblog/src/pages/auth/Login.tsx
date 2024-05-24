@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { AuthCard, InputCard, SubmitCard } from '../../components/AuthComponents'
 import { HandleLoginwithEmail } from '../../controllers/Login';
 import { HandleLoginwithUsername } from '../../controllers/Login';
-
+import { useNavigate } from 'react-router-dom';
 
 function Login(): React.ReactNode {
 
@@ -11,6 +11,23 @@ function Login(): React.ReactNode {
     const [email, setEmail] = useState<string>('');
     const [selectEmail, setSelectEmail] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
+
+    function emailLogin(email: string, password: string): void {
+        HandleLoginwithEmail(email, password).then((b: Boolean) => {
+            if (b) {
+                navigate('/blogs/public')
+            }
+        })
+    }
+
+    function usernameLogin(username: string, password: string): void {
+        HandleLoginwithUsername(username, password).then((b: Boolean) => {
+            if (b) {
+                navigate('/blogs/public')
+            }
+        })
+    }
 
     return (
         <AuthCard>
@@ -29,14 +46,6 @@ function Login(): React.ReactNode {
 
             <form className="mt-4">
 
-
-
-
-                {/* <InputCard label="Email" name="email" type="email" value={email} setValue={setEmail} />
-                <InputCard label="Password" name="password" type="password" value={password} setValue={setPassword} />
-                <SubmitCard title="Login" onClick={() => HandleLogin(email, password)} /> */}
-
-
                 {
                     selectEmail ?
                         <InputCard label="Email" name="email" type="email" value={email} setValue={setEmail} />
@@ -45,11 +54,12 @@ function Login(): React.ReactNode {
                 }
 
                 <InputCard label="Password" name="password" type="password" value={password} setValue={setPassword} />
-                <SubmitCard title="Login" onClick={() => selectEmail ? HandleLoginwithEmail(email, password) : HandleLoginwithUsername(username, password)} />
+                <SubmitCard title="Login" onClick={() => selectEmail ? emailLogin(email, password) : usernameLogin(username, password)} />
 
             </form>
         </AuthCard>
     )
+
 }
 
 export default Login;

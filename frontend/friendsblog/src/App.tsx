@@ -7,31 +7,25 @@ import Home from './pages/home/Home'
 import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
 import Logout from './pages/auth/Logout'
-
+import WriteBlog from './pages/blog/WriteBlog'
 
 function App(): React.ReactNode {
 
   return (
     <>
       <div className="bg bg-home bg-cover bg-center  bg-blog-img h-screen w-full bg-fixed bg-no-repeat overflow-y-auto">
-      <NavBar />
+        <NavBar />
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="/logout" element={<Logout />} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/blog/write" element={<WriteBlog />} />
 
-           {/* <Route path="/myfriends" element={<MyFriends />} />
-          <Route path="/myblogs" element={<MyBlogs />} />
-          <Route path="/writeblog" element={<WriteBlog />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/accountsettings" element={<AccountSettings />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/register" element={<Register />} /> */}
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   )

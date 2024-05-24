@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { AuthCard, InputCard, SubmitCard } from '../../components/AuthComponents'
 import HandleSignup from '../../controllers/Signup'
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Signup(): React.ReactNode {
@@ -12,6 +12,16 @@ function Signup(): React.ReactNode {
     const [password, setPassword] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+
+    const navigate = useNavigate();
+
+    function signup(username: string, email: string, password: string, firstName: string, lastName: string): void {
+        HandleSignup(username, email, password, firstName, lastName).then((b: Boolean) => {
+            if (b) {
+                navigate('/')
+            }
+        })
+    }
 
 
     return (
@@ -37,7 +47,7 @@ function Signup(): React.ReactNode {
                 <InputCard label="First Name" name="firstName" type="text" value={firstName} setValue={setFirstName} />
                 <InputCard label="Last Name" name="lastName" type="text" value={lastName} setValue={setLastName} />
                 <InputCard label="Password" name="password" type="password" value={password} setValue={setPassword} />
-                <SubmitCard title="Signup" onClick={() => HandleSignup(username, email, password, firstName, lastName)} />
+                <SubmitCard title="Signup" onClick={() => signup(username, email, password, firstName, lastName)} />
             </form>
 
         </AuthCard>
