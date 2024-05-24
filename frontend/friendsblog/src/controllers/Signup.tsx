@@ -1,10 +1,13 @@
 
 import axios from 'axios';
 import { SignupType } from '@friendsblog/common';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 async function HandleSignup(username: string, email: string, password: string, firstName: string, lastName: string) {
     try {
-        const response = await axios.post('http://localhost:4000/api/v1/user/signup', {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, {
             username,
             email,
             password,
