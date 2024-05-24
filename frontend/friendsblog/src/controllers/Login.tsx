@@ -5,7 +5,7 @@ import { EmailLoginType,UsernameLoginType } from '@friendsblog/common';
 async function HandleLoginwithEmail( email: string, password: string) {
     const apiUrl:string = import.meta.env.VITE_API_URL;
     
-    const response = await axios.post(`${apiUrl}/auth/login/byemail`,
+    const response = await axios.post(`${apiUrl}/api/v1//auth/login/byemail`,
     {
         email: email,
         password: password
@@ -27,7 +27,7 @@ async function HandleLoginwithUsername( username: string, password: string) {
     
     const apiUrl:string = import.meta.env.VITE_API_URL;
 
-    const response = await axios.post(`${apiUrl}/auth/login/byusername`,
+    const response = await axios.post(`${apiUrl}/api/v1/auth/login/byusername`,
     {
         username: username,
         password: password
