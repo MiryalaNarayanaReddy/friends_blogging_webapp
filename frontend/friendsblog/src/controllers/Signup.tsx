@@ -4,8 +4,8 @@ import { SignupType } from '@friendsblog/common';
 
 async function HandleSignup(username: string, email: string, password: string, firstName: string, lastName: string) {
     try {
-        const apiUrl:string = import.meta.env.VITE_API_URL;
-        const response = await axios.post(`${apiUrl}/api/v1/auth/signup`, 
+        const base_url:string = import.meta.env.VITE_API_URL;
+        const response = await axios.post(`${base_url}/auth/signup`, 
         {
             username,
             email,
