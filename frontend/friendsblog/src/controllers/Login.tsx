@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { EmailLoginType,UsernameLoginType } from '@friendsblog/common';
-import  dotenv from 'dotenv';
-
-dotenv.config();
 
 
 async function HandleLoginwithEmail( email: string, password: string) {
+    const apiUrl:string = import.meta.env.VITE_API_URL;
     
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login/byemail`, 
+    const response = await axios.post(`${apiUrl}/auth/login/byemail`,
     {
         email: email,
         password: password
@@ -27,7 +25,9 @@ async function HandleLoginwithEmail( email: string, password: string) {
 
 async function HandleLoginwithUsername( username: string, password: string) {
     
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login/byusername`,
+    const apiUrl:string = import.meta.env.VITE_API_URL;
+
+    const response = await axios.post(`${apiUrl}/auth/login/byusername`,
     {
         username: username,
         password: password
