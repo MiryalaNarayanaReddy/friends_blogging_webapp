@@ -53,7 +53,7 @@ export async function MyBlogs(timestamp:Date, userId:string , prisma: PrismaClie
 
         return {
             success: true,
-            data: myBlogData
+            myBlogs: myBlogData
         };
         
     } catch (error: any) {

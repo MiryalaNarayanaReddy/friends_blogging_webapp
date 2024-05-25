@@ -64,7 +64,7 @@ export async function PublicBlogs(timestamp: Date, prisma: PrismaClient) {
 
         return {
             success: true,
-            data: blogCardData
+            publicBlogs: blogCardData
         };
     } catch (error: any) {
         console.error('Error fetching blogs:', error);

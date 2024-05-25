@@ -26,7 +26,7 @@ export async function HandleGetPublicBlogs(timestamp:PublicBlogCardType['lastUpd
 
         if (response.data.success) {
             // alert('Blogs fetched successfully')
-            return response.data
+            return response.data.publicBlogs
         }
         else{
             alert('Some error occured')
@@ -68,7 +68,7 @@ export async function HandleGetMyBlogs(timestamp:MyBlogsCardType['updatedAt']): 
 
         if (response.data.success) {
             // alert('Blogs fetched successfully')
-            return response.data
+            return response.data.myBlogs
         }
         else{
             alert('Some error occured')
