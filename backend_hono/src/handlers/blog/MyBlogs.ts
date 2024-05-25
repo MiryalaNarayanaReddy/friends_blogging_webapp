@@ -1,14 +1,14 @@
 import { MyBlogsCardType } from "@friendsblog/common";
 import { PrismaClient, Prisma } from "@prisma/client";
 
-export async function MyBlogs(timestamp: MyBlogsCardType['updatedAt'], userId:string , prisma: PrismaClient) {
+export async function MyBlogs(timestamp:Date, userId:string , prisma: PrismaClient) {
     try {
         // Fetch the blogs updated before the given timestamp and are public
         const blogs = await prisma.blog.findMany({
             where: {
                 userId: userId,
                 updatedAt: {
-                    lt: new Date(timestamp)
+                    lt: timestamp
                 }
             },
             take: 10,

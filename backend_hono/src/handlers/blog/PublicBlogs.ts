@@ -1,14 +1,14 @@
 import { PublicBlogCardType } from "@friendsblog/common";
 import { PrismaClient, Prisma } from "@prisma/client";
 
-export async function PublicBlogs(timestamp: PublicBlogCardType['lastUpdate'], prisma: PrismaClient) {
+export async function PublicBlogs(timestamp: Date, prisma: PrismaClient) {
     try {
         // Fetch the blogs updated before the given timestamp and are public
         const blogs = await prisma.blog.findMany({
             where: {
                 type: 'public',
                 updatedAt: {
-                    lt: new Date(timestamp)
+                    lt: timestamp
                 }
             },
             take: 10,

@@ -7,18 +7,16 @@ export async function HandleGetPublicBlogs(timestamp:PublicBlogCardType['lastUpd
 
     try {
 
-        let data = {}
+        const base_url: string = import.meta.env.VITE_API_URL;
+       
+        let blog_url = `${base_url}/blog/public`
 
         if(timestamp !== ''){
-            data = {
-                timestamp: timestamp
-            }
+            blog_url = `${blog_url}/${timestamp}`
         }
 
-        const base_url: string = import.meta.env.VITE_API_URL;
 
-        const response = await axios.post(`${base_url}/blog/public`,
-            data,
+        const response = await axios.get(blog_url,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -48,13 +46,20 @@ export async function HandleGetPublicBlogs(timestamp:PublicBlogCardType['lastUpd
 }
 
 
-export async function HandleGetMyBlogs(): Promise<MyBlogsCardType[]> {
+export async function HandleGetMyBlogs(timestamp:MyBlogsCardType['updatedAt']): Promise<MyBlogsCardType[]> {
 
     try {
 
         const base_url: string = import.meta.env.VITE_API_URL;
 
-        const response = await axios.get(`${base_url}/blog/myblogs`,
+
+        let my_blog_url = `${base_url}/blog/myblogs`
+
+        if(timestamp !== ''){
+            my_blog_url = `${my_blog_url}/${timestamp}`
+        }
+
+        const response = await axios.get(my_blog_url,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -62,7 +67,7 @@ export async function HandleGetMyBlogs(): Promise<MyBlogsCardType[]> {
             })
 
         if (response.data.success) {
-            alert('Blogs fetched successfully')
+            // alert('Blogs fetched successfully')
             return response.data
         }
         else{

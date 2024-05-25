@@ -77,22 +77,22 @@ blogRoutes.post('/publish', async (c) => {
 });
 
 
-blogRoutes.get('/public', async (c) => {
-
-    const body = await c.req.json()
-
-    const prisma: any = new PrismaClient({
-        datasourceUrl: c.env?.DATABASE_URL,
-    }).$extends(withAccelerate());
+blogRoutes.get('/public/:timestamp?', async (c) => {
 
     try {
 
+        const prisma: any = new PrismaClient({
+            datasourceUrl: c.env?.DATABASE_URL,
+        }).$extends(withAccelerate());
+
+
+
         // check if user sent a timestamp to get 10 blogs before that timestamp
 
-        let timestamp: PublicBlogCardType['lastUpdate'] = body.timestamp || null;
+        let timestamp:any = c.req.param('timestamp') 
 
-        if (timestamp === null) {
-            timestamp = new Date().toISOString(); // current timestamp
+        if (timestamp === undefined) {
+            timestamp = new Date()
         }
 
         const publicBlogs = await PublicBlogs(timestamp, prisma);
@@ -108,28 +108,28 @@ blogRoutes.get('/public', async (c) => {
 
 })
 
-
-blogRoutes.get('/myblogs', async (c) => {
-
-    const body = await c.req.json()
-
-    const prisma: any = new PrismaClient({
-        datasourceUrl: c.env?.DATABASE_URL,
-    }).$extends(withAccelerate());
-
+blogRoutes.get('/myblogs/:timestamp?', async (c) => {
     try {
+
+        const prisma: any = new PrismaClient({
+            datasourceUrl: c.env?.DATABASE_URL,
+        }).$extends(withAccelerate());
 
         // check if user sent a timestamp to get 10 blogs before that timestamp
 
-        let timestamp: MyBlogsCardType['updatedAt'] = body.timestamp || null;
+        // if timestamp is not sent, get the latest 10 blogs
 
-        if (timestamp === null) {
-            timestamp = new Date().toISOString(); // current timestamp
+        let timestamp: any = c.req.param('timestamp') 
+
+        if (timestamp === undefined) {
+            timestamp = new Date()
         }
 
         const userId = c.get('userId');
 
         const myBlogs = await MyBlogs(timestamp, userId, prisma);
+
+
 
         c.status(200);
         return c.json(myBlogs);
