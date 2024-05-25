@@ -16,7 +16,7 @@ function Login(): React.ReactNode {
     function emailLogin(email: string, password: string): void {
         HandleLoginwithEmail(email, password).then((b: Boolean) => {
             if (b) {
-                navigate('/blog/friendsblog')
+                navigate('/blog/public')
             }
         })
     }
@@ -24,7 +24,7 @@ function Login(): React.ReactNode {
     function usernameLogin(username: string, password: string): void {
         HandleLoginwithUsername(username, password).then((b: Boolean) => {
             if (b) {
-                navigate('/blog/friendsblog')
+                navigate('/blog/public')
             }
         })
     }

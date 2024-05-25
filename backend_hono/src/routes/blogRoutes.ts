@@ -2,10 +2,14 @@ import { Hono } from 'hono';
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 import { verify } from 'hono/jwt';
-import { decode } from 'hono/jwt';
 
 import { BlogInput } from '@friendsblog/common';
+import { PublicBlogCardType } from '@friendsblog/common';
+import { MyBlogsCardType } from '@friendsblog/common';
+
 import { PublishBlog } from '../handlers/blog/PublishBlog';
+import { PublicBlogs } from '../handlers/blog/PublicBlogs';
+import { MyBlogs } from '../handlers/blog/MyBlogs';
 
 const blogRoutes = new Hono<{
     Bindings: {
@@ -59,7 +63,7 @@ blogRoutes.post('/publish', async (c) => {
     }
 
     try {
-        const prisma:any = new PrismaClient({
+        const prisma: any = new PrismaClient({
             datasourceUrl: c.env?.DATABASE_URL,
         }).$extends(withAccelerate());
 
@@ -71,5 +75,73 @@ blogRoutes.post('/publish', async (c) => {
         return c.json({ error: 'Internal server error' });
     }
 });
+
+
+blogRoutes.get('/public', async (c) => {
+
+    const body = await c.req.json()
+
+    const prisma: any = new PrismaClient({
+        datasourceUrl: c.env?.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+
+        // check if user sent a timestamp to get 10 blogs before that timestamp
+
+        let timestamp: PublicBlogCardType['lastUpdate'] = body.timestamp || null;
+
+        if (timestamp === null) {
+            timestamp = new Date().toISOString(); // current timestamp
+        }
+
+        const publicBlogs = await PublicBlogs(timestamp, prisma);
+
+        c.status(200);
+        return c.json(publicBlogs);
+    }
+    catch (e) {
+        console.log(e);
+        c.status(500);
+        return c.json({ error: 'Internal server error' });
+    }
+
+})
+
+
+blogRoutes.get('/myblogs', async (c) => {
+
+    const body = await c.req.json()
+
+    const prisma: any = new PrismaClient({
+        datasourceUrl: c.env?.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+
+        // check if user sent a timestamp to get 10 blogs before that timestamp
+
+        let timestamp: MyBlogsCardType['updatedAt'] = body.timestamp || null;
+
+        if (timestamp === null) {
+            timestamp = new Date().toISOString(); // current timestamp
+        }
+
+        const userId = c.get('userId');
+
+        const myBlogs = await MyBlogs(timestamp, userId, prisma);
+
+        c.status(200);
+        return c.json(myBlogs);
+    }
+    catch (e) {
+        console.log(e);
+        c.status(500);
+        return c.json({ error: 'Internal server error' });
+    }
+
+})
+
+
 
 export default blogRoutes;

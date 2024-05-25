@@ -16,15 +16,10 @@ function Home(): React.ReactNode {
 
                 </div>
 
-
+            {/* 
                 <div className=" flex items-center justify-center h-screen w-full bg-transparent">
 
-
                     <div className="text-white text-4xl font-bold text-center col-span-3  flex items-center justify-center bg-transparent shadow-lg">
-
-
-                        {/* 4-5 paragrah of text  */}
-
 
                         <div className="grid grid-cols-12">
 
@@ -44,13 +39,10 @@ function Home(): React.ReactNode {
 
                         </div>
 
-                
-
-
                     </div>
 
                 </div>
-           
+            */}
         </>
     )
 }

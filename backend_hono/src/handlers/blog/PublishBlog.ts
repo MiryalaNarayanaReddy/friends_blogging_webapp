@@ -15,7 +15,18 @@ export async function PublishBlog(body: BlogInputType, userId: string, prisma: P
             }
         });
 
-        content.forEach(async (c) => {
+        // content.forEach(async (c) => {
+        //     await prisma.blogContent.create({
+        //         data: {
+        //             index: c.index,
+        //             content: c.content,
+        //             blogId: blog.id
+        //         }
+        //     });
+        // })
+
+        // the above code did not work as expected because the forEach loop didn't wait for the async functions inside to complete
+        await Promise.all(content.map(async (c) => {
             await prisma.blogContent.create({
                 data: {
                     index: c.index,
@@ -23,7 +34,7 @@ export async function PublishBlog(body: BlogInputType, userId: string, prisma: P
                     blogId: blog.id
                 }
             });
-        })
+        }));
 
 
         return {

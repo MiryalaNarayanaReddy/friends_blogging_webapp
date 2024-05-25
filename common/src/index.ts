@@ -69,3 +69,26 @@ export type BlogInputType = z.infer<typeof BlogInput>;
 
 
 
+// blog card data 
+
+export const PublicBlogCard = z.object({
+    id: z.string(),
+    title: z.string(),
+    lastUpdate: z.string(),
+    firstParagraph: z.string(),
+    authorId: z.string(),
+    authorName: z.string(),
+});
+
+export type PublicBlogCardType = z.infer<typeof PublicBlogCard>;
+
+export const MyBlogsCard = z.object({
+    id: z.string(),
+    title: z.string(),
+    type: z.string(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+    firstParagraph: z.string(),
+});
+
+export type MyBlogsCardType = z.infer<typeof MyBlogsCard>;
