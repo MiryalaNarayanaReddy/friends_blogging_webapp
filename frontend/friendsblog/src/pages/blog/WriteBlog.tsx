@@ -4,7 +4,8 @@ import { ParagraphCard, ParagraphWrapperCard, WindowCard, WrapperCard } from "..
 import { ParagraphEditCard } from "../../components/Wrapper";
 import { TitleCard } from "../../components/Wrapper";
 import { InputTitleCard } from "../../components/Wrapper";
-
+import HandlePublishBlog from "../../controllers/PublishBlog";
+import { PublishBlogButton, SelectBlogType } from "../../components/Publishblog";
 
 
 function renderParagraphCard(text: string, id: string, currentParagraphIndex: string, setCurrentParagraph: (text: string) => void, setCurrentParagraphIndex: (id: string) => void, saveParagraph: (id: string) => void, addParagraph: (id: string, position: number) => void): React.ReactNode {
@@ -60,10 +61,18 @@ function renderEditParagraphCard(id: string, currentParagraph: string, setCurren
 
 function WriteBlog(): React.ReactNode {
     const [title, setTitle] = useState('');
+    const [type, setType] = useState('');
     const [paragraphs, setParagraphs] = useState<{ [id: string]: string }>({});
 
     const [currentParagraph, setCurrentParagraph] = useState<string>('');
     const [currentParagraphIndex, setCurrentParagraphIndex] = useState<string>('');
+
+
+    const publishBlog = async () => {
+        HandlePublishBlog(title, type, paragraphs);
+    }
+
+
 
     const saveParagraph = (id: string) => {
 
@@ -73,9 +82,25 @@ function WriteBlog(): React.ReactNode {
 
         if (currentParagraph === '') {
 
-            let p = { ...paragraphs };
-            delete p[id];
-            setParagraphs(p);
+            // delete the paragraph if it is empty
+
+            let p = Object.values(paragraphs);
+            const pos = parseInt(id);
+
+            p.splice(pos, 1);
+
+            let newP: { [id: string]: string } = {};
+
+            p.forEach((text, i) => {
+                newP[i.toString()] = text;
+            });
+
+            setParagraphs(newP);
+
+
+
+
+
             setCurrentParagraph('');
             setCurrentParagraphIndex('-1');
             return;
@@ -136,29 +161,34 @@ function WriteBlog(): React.ReactNode {
         <WindowCard>
             <WrapperCard>
 
+
                 <TitleCard>
                     <div className="justify-center m-2  col-span-1">
 
-                        <div className="text-2xl font-bold text-center">Write Blog</div>
+                        <div className="grid grid-cols-3 gap-4">
+
+                            <div className="text-4xl font-bold text-center">Write Blog</div>
+                            <SelectBlogType setType={setType} />
+                            <PublishBlogButton publishBlog={publishBlog} />
+
+                        </div>
+
 
                         <InputTitleCard label="Title" placeholder="Title" name="title" type="text" value={title} setValue={setTitle} />
 
-
-                        {/* <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />*/}
                     </div>
 
-                   
 
                 </TitleCard>
-                <div className="justify-center z-10 text-sm shadow-lg w-40 m-4">
-                        <button onClick={() => addParagraph('0', 0)}>
-                            + add new para below
-                        </button>
-                    </div>
-                    
-                {/* // mouse press outside detect */}
-                <ParagraphWrapperCard  >
-                
+
+                <div className="z-10 text-sm shadow-lg w-40 m-4 ">
+                    <button onClick={() => addParagraph('0', 0)}>
+                        + add new para below
+                    </button>
+                </div>
+
+
+                <ParagraphWrapperCard>
 
                     {Object.keys(paragraphs).map((id) => {
                         if (id === currentParagraphIndex) {
@@ -169,7 +199,11 @@ function WriteBlog(): React.ReactNode {
                             return renderParagraphCard(paragraphs[id], id, currentParagraphIndex, setCurrentParagraph, setCurrentParagraphIndex, saveParagraph, addParagraph);
                         }
                     })}
+
                 </ParagraphWrapperCard>
+
+
+
             </WrapperCard>
         </WindowCard>
     );

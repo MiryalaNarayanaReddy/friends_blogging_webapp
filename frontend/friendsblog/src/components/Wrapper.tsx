@@ -125,6 +125,7 @@ export function InputTitleCard(props: { label: string, placeholder: string, name
                 name={props.name}
                 id={props.name}
                 value={props.value}
+                required={true}
                 onChange={(e) => props.setValue(e.target.value)}
                 className="mt-1 p-2 w-full border border-gray-300 rounded-md"
             />
