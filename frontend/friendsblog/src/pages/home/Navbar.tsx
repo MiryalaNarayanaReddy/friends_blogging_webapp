@@ -25,7 +25,7 @@ function NavBar(): React.ReactNode {
     else {
         return (
 
-            <div className="grid grid-cols-3 bg p-4 mb-4 justify-between fixed top-0 w-full z-20 bg-gray-900 opacity-80">
+            <div className="grid grid-cols-3 bg p-4 mb-4 justify-between fixed top-0 w-full z-20 bg-gray-900 opacity-80 ">
                 <div className="col-span-1">
                     <div className="text-2xl">
                         <NavItem title="Friends Blog" link="/" />
@@ -35,8 +35,9 @@ function NavBar(): React.ReactNode {
 
                 <div className="col-span-1 flex justify-center gap-4">
 
-                    <NavItem title="My Friends" link="/myfriends" />
-                    <NavItem title="My blogs" link="/myblogs" />
+                    <NavItem title="Blogs" link="/blog/public" />
+                    <NavItem title="Friend's Blog" link="/blog/friendsblog" />
+                    <NavItem title="My blogs" link="/blog/private" />
                     <NavItem title="Write blog" link="/blog/write" />
 
                 </div>

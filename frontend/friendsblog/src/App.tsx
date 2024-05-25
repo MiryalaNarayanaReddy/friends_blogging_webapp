@@ -8,6 +8,9 @@ import Login from './pages/auth/Login'
 import Signup from './pages/auth/Signup'
 import Logout from './pages/auth/Logout'
 import WriteBlog from './pages/blog/WriteBlog'
+import ShowPublicBlog from './pages/blog/ShowPublicBlog'
+import ShowPrivateBlog from './pages/blog/ShowPrivateBlog'
+import ShowFriendsBlog from './pages/blog/ShowFriendsBlog'
 
 function App(): React.ReactNode {
 
@@ -22,7 +25,12 @@ function App(): React.ReactNode {
             <Route path="/login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="/logout" element={<Logout />} />
+
             <Route path="/blog/write" element={<WriteBlog />} />
+
+            <Route path="/blog/public" element={<ShowPublicBlog />} />
+            <Route path="/blog/private" element={<ShowPrivateBlog />} />
+            <Route path="/blog/friendsblog" element={<ShowFriendsBlog />} />
 
           </Routes>
         </BrowserRouter>

@@ -25,3 +25,18 @@ The docs folder contains requirements and design documents, stack used, and the 
 
 ![Signup Page](./screenshots/signup.png)
 
+4. Write Blog Page
+
+![Write Blog Page](./screenshots/write_blog.png)
+
+5. Friends Blogs Page
+
+![Friends Blog Page](./screenshots/friends_blogs.png)
+
+6. Public Blogs Page
+
+![Public Blogs Page](./screenshots/public_blogs.png)
+
+7. Private Blogs Page
+
+![Private Blogs Page](./screenshots/private_blogs.png)

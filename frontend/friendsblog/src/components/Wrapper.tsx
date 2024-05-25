@@ -2,7 +2,7 @@ import React from "react";
 
 export function WindowCard({ children }: { children: React.ReactNode }): React.ReactNode {
     return (
-        <div className="h-screen w-full bg-transparent  mt-20 mb-40 items-center justify-center flex ">
+        <div className="h-[90vh] w-full bg-transparent  mt-20 mb-40 items-center justify-center flex fixed top-0">
 
             {children}
 
@@ -14,7 +14,7 @@ export function WindowCard({ children }: { children: React.ReactNode }): React.R
 export function WrapperCard({ children }: { children: React.ReactNode }): React.ReactNode {
     return (
 
-        <div className="h-screen w-4/5 bg-white shadow-lg rounded-lg  overflow-y-auto flex flex-col items-center">
+        <div className="h-[90vh] w-4/5 bg-white shadow-lg rounded-lg  overflow-y-auto flex flex-col items-center fixed top-20 pl-4 pr-4 overflow-x-hidden">
 
             {children}
         </div>
