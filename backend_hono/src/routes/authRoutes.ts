@@ -75,7 +75,7 @@ authRoutes.post('/login/byemail', async (c) => {
             return c.json({...result, token})
         }else{
 
-            c.status(401)
+            c.status(200)
             return c.json(result)
         }
 
@@ -116,7 +116,7 @@ authRoutes.post('/login/byusername', async (c) => {
         }
 
         else{
-            c.status(401)
+            c.status(200)
             return c.json(result)
         }
 

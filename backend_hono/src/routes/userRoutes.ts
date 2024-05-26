@@ -63,13 +63,12 @@ userRoutes.get('/all/:filter?/:userstamp?', async (c) => {
 
         const users = await getUsers(userstamp, filter, prisma);
 
-        if (users.success) {
-            c.status(200);
-            return c.json(users);
-        }
+        // if (users.success) {
+        //     c.status(200);
+        //     return c.json(users);
+        // }
 
-        c.status(404);
-
+        c.status(200)
         return c.json(users);
 
     } catch (error) {

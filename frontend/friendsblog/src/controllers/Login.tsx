@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { EmailLoginType, UsernameLoginType } from '@friendsblog/common';
 
-async function HandleLoginwithEmail(email: string, password: string) : Promise<boolean> {
+async function HandleLoginwithEmail(email: string, password: string): Promise<boolean> {
 
     const base_url: string = import.meta.env.VITE_API_URL;
 
@@ -14,11 +14,20 @@ async function HandleLoginwithEmail(email: string, password: string) : Promise<b
 
     // console.log(response.data)
     if (response.status === 200) {
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('user', JSON.stringify(response.data.user))
+        if (response.data.success) {
 
-        alert('Login successful')
-        return true
+
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('user', JSON.stringify(response.data.user))
+
+            alert('Login successful')
+            return true
+        }
+        else {
+            alert(response.data.error)
+            return false
+        }
+
     }
     else {
         alert('Login failed')
@@ -27,7 +36,7 @@ async function HandleLoginwithEmail(email: string, password: string) : Promise<b
 
 }
 
-async function HandleLoginwithUsername(username: string, password: string) : Promise<boolean> {
+async function HandleLoginwithUsername(username: string, password: string): Promise<boolean> {
 
     const base_url: string = import.meta.env.VITE_API_URL;
 
@@ -40,11 +49,18 @@ async function HandleLoginwithUsername(username: string, password: string) : Pro
 
     // console.log(response.data)
     if (response.status === 200) {
-        localStorage.setItem('token', response.data.token)
-        localStorage.setItem('user', JSON.stringify(response.data.user))
 
-        alert('Login successful')
-        return true
+        if (response.data.success) {
+            localStorage.setItem('token', response.data.token)
+            localStorage.setItem('user', JSON.stringify(response.data.user))
+
+            alert('Login successful')
+            return true
+        }
+        else {
+            alert(response.data.error)
+            return false
+        }
     }
     else {
         alert('Login failed')

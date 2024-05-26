@@ -35,7 +35,7 @@ export async function HandleGetUsers(filter:String ,userstamp:UsersCardType['use
             return response.data.usersData
         }
         else{
-            // alert('Some error occured')
+            alert(response.data.error)
             return []
         }
 
