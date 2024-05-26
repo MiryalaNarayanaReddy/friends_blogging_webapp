@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Avatar(props: {firstName: string, lastName: string}): React.ReactNode {
+function Avatar(props: { firstName: string, lastName: string }): React.ReactNode {
 
     if (props.firstName === '' && props.lastName === '') {
         return (
@@ -21,7 +21,6 @@ function Avatar(props: {firstName: string, lastName: string}): React.ReactNode {
             </div>
         )
     }
-
 
     return (
         <div className="flex items-center">

@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
-import { Signup } from '../handlers/user/Signup'
+import { Signup } from '../handlers/auth/Signup'
 // import { Login } from '../handlers/user/Login'
-import { LoginByEmail } from '../handlers/user/Login'
-import { LoginByUsername } from '../handlers/user/Login'
+import { LoginByEmail } from '../handlers/auth/Login'
+import { LoginByUsername } from '../handlers/auth/Login'
 import { EmailLoginInput, SignupInput, UsernameLoginInput } from '@friendsblog/common'
 
 import { PrismaClient } from '@prisma/client/edge'

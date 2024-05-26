@@ -36,6 +36,7 @@ function NavBar(): React.ReactNode {
                 <div className="col-span-1 flex justify-center gap-4">
 
                     <NavItem title="Blogs" link="/blog/public" />
+                    <NavItem title="Users" link="/users" />
                     {/* <NavItem title="Friend's Blog" link="/blog/friendsblog" /> */}
                     <NavItem title="My blogs" link="/blog/myblogs" />
                     <NavItem title="Write blog" link="/blog/write" />

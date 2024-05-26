@@ -23,6 +23,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   blogs     Blog[]
+  friends   Friend[]        @relation("Friends")
 }
 
 
@@ -45,5 +46,30 @@ model BlogContent {
   blog      Blog     @relation(fields: [blogId], references: [id], name: "BlogContents")
 
   @@index([blogId])  // Index for better query performance
+}
+
+// FriendShip model keeps track of friend requests
+model FriendShip{
+  id      String @id @default(uuid())
+  senderId String  
+  receiverId String 
+  status    String // pending, accepted, rejected
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+// Friend model keeps track of friends
+// this contains repeated data, but it is necessary for faster queries
+
+model Friend {
+  id      String @id @default(uuid())
+  userId  String
+  friendId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  friends  User @relation(fields: [userId], references: [id], name: "Friends")
+
+  @@unique([userId, friendId])
 }
 

@@ -29,7 +29,7 @@ export async function HandleGetPublicBlogs(timestamp:PublicBlogCardType['lastUpd
             return response.data.publicBlogs
         }
         else{
-            alert('Some error occured')
+            // alert('Some error occured')
             return []
         }
 
@@ -71,7 +71,7 @@ export async function HandleGetMyBlogs(timestamp:MyBlogsCardType['updatedAt']): 
             return response.data.myBlogs
         }
         else{
-            alert('Some error occured')
+            // alert('Some error occured')
             return []
         }
 

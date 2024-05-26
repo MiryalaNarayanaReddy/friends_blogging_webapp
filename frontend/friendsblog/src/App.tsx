@@ -11,6 +11,8 @@ import WriteBlog from './pages/blog/WriteBlog'
 import ShowPublicBlogs from './pages/blog/ShowPublicBlogs'
 import ShowMyBlogs from './pages/blog/ShowMyBlogs'
 // import ShowFriendsBlogs from './pages/blog/ShowFriendsBlogs'
+import ShowUsers from './pages/user/Users'
+// import MyFriends from './pages/user/MyFriends'
 
 function App(): React.ReactNode {
 
@@ -25,6 +27,8 @@ function App(): React.ReactNode {
             <Route path="/login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/users" element={<ShowUsers />} />
+            {/* <Route path="/users/myfriends" element={<MyFriends />} /> */}
 
             <Route path="/blog/write" element={<WriteBlog />} />
 

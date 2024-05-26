@@ -92,3 +92,13 @@ export const MyBlogsCard = z.object({
 });
 
 export type MyBlogsCardType = z.infer<typeof MyBlogsCard>;
+
+
+// usersCard
+
+export const UsersCard = z.object({
+    id: z.string(),
+    username: z.string(),
+});
+
+export type UsersCardType = z.infer<typeof UsersCard>;
