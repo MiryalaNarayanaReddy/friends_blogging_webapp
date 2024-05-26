@@ -32,7 +32,7 @@ export async function HandleGetUsers(filter:String ,userstamp:UsersCardType['use
 
         if (response.data.success) {
             // alert('Users fetched successfully')
-            return response.data.users
+            return response.data.usersData
         }
         else{
             // alert('Some error occured')
